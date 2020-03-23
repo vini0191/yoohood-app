@@ -1,14 +1,21 @@
-<div class="container">
+<% content_for :meta_title, "#{@invite.event.title} #{t('.is_on')} #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, t('.meta_description') %>
+<% content_for :meta_image, @invite.event.cover %>
+<div class="container my-5">
   <div class="row justify-content-center">
     <div class="card invite-card col-12 col-sm-6 p-4">
       <div class="card-title text-center">
         <h2><%= @invite.user.name %></h2>
-        <p>has invited you to:</p>
+        <p><%= t('.has_invited') %></p>
         <h1><%= @event.title %></h1>
         <p><%= @event.start_time.strftime('%d.%m.%Y %H:%M') %></p>
         <p><%= @event.places.present? ? @event.places.first.name : '' %></p>
         <%= simple_form_for @invite do |f| %>
-          <%= f.submit value: 'Accept', class: 'btn btn-outline-dark' %>
+          <% if current_user.present? %>
+            <%= f.submit value: t('.accept'), class: 'btn btn-outline-dark' %>
+          <% else %>
+            <%= link_to  t('.login_to_accept'), logged_invite_path(@invite, @invite.token), class: 'btn btn-outline-dark' %>
+          <% end %>
         <% end %>
       </div>
     </div>

@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>You've recieved an Invite from <%= @invite.user.name %> </title>
+    <title><%= I18n.translate("invite_mailer.invitation.title", user_name:@invite.user.name) %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body style="padding: 0; margin: 0; background-color: #FFFFFF; color: #ffffff;">
@@ -21,14 +21,14 @@
 
         <tr>
          <td cellpadding="0" cellspacing="0" align="center">
-          <%= image_tag @invite.event.cover, alt:"Event image", width:"100%", height:"300", style:"object-fit: cover;" %>
+          <%= image_tag @invite.event.cover, alt: I18n.translate("invite_mailer.invitation.cover_alt"), width:"100%", height:"300", style:"object-fit: cover;" %>
          </td>
         </tr>
 
         <tr>
           <td cellpadding="0" cellspacing="0">
             <p style="color: #FFFFFF; font-family: Montserrat, Helvetica, sans-serif; font-weight: 400; font-size: 16px; line-height: 1.3em; margin-top: 35px; margin-left: 35px; margin-bottom: 0;">
-              <%= @invite.user.name %> has invited you to:
+              <%= I18n.translate("invite_mailer.invitation.has_invited", user_name: @invite.user.name) %>
             </p>
           </td>
         </tr>
@@ -43,28 +43,29 @@
 
         <tr height="100px">
           <td align="center">
-            <%= link_to "More info", invite_url(@invite, token: @invite.token), style:"padding: 10px 24px 10px 24px; background-color: #63c42b; color: #FFFFFF; font-family: Montserrat, Helvetica, sans-serif; font-size: 16px; text-decoration: none;" %>
+            <%= link_to I18n.translate("invite_mailer.invitation.accept"), invite_url(id: @invite.id, token: @invite.token), style:"padding: 10px 24px 10px 24px; background-color: #63c42b; color: #FFFFFF; font-family: Montserrat, Helvetica, sans-serif; font-size: 16px; text-decoration: none;" %>
           </td>
         </tr>
 
         <tr height="20px" bgcolor="#000000">
           <td align="center">
-            <p style="font-family: Montserrat, Helvetica, sans-serif; font-size: 14px; color: #FFFFFF; font-weight: normal; margin: 0; padding-top: 16px;">follow us:</p>
+            <p style="font-family: Montserrat, Helvetica, sans-serif; font-size: 14px; color: #FFFFFF; font-weight: normal; margin: 0; padding-top: 16px;"><%= I18n.translate('invite_mailer.invitation.follow_us') %></p>
           </td>
         </tr>
 
         <tr>
          <td align="center" bgcolor="#000000" style="padding: 8px 0 0 0;">
-          <a href="https://www.twitter.com/yoohoodco" target="_blank"><img src="https://res.cloudinary.com/djxa4ytky/image/upload/v1576096779/twitter-64_on1hpe.png" width="30"></a>
-          <a href="https://www.facebook.com/yoohood" target="_blank"><img src="https://res.cloudinary.com/djxa4ytky/image/upload/v1576096779/facebook-64_lzfxun.png" width="30" style="margin: 0px 10px 0px 10px;"></a>
-          <a href="https://www.instagram.com/yoohood.fun" target="_blank"><img src="https://res.cloudinary.com/djxa4ytky/image/upload/v1576096779/instagram-64_cnznpi.png" width="30"></a>
-          <a href="https://github.com/jucaesmanhoto/yoohood-app" target="_blank"><img src="https://res.cloudinary.com/djxa4ytky/image/upload/v1576097945/github-64_zokzhq.png" width="30" style="margin-left: 10px;"></a>
+          <a href="https://www.twitter.com/yoohoodco" target="_blank"><img src="https://res.cloudinary.com/djxa4ytky/image/upload/v1576096779/twitter-64_on1hpe.png" width="30" alt="twitter-logo"></a>
+          <a href="https://www.facebook.com/yoohood" target="_blank"><img src="https://res.cloudinary.com/djxa4ytky/image/upload/v1576096779/facebook-64_lzfxun.png" width="30" alt="facebook-logo" style="margin: 0px 10px 0px 10px;"></a>
+          <a href="https://www.instagram.com/yoohood.fun" target="_blank"><img src="https://res.cloudinary.com/djxa4ytky/image/upload/v1576096779/instagram-64_cnznpi.png" alt="instagram-logo" width="30"></a>
+          <a href="https://github.com/jucaesmanhoto/yoohood-app" target="_blank"><img src="https://res.cloudinary.com/djxa4ytky/image/upload/v1576097945/github-64_zokzhq.png" width="30" alt="github-logo" style="margin-left: 10px;"></a>
          </td>
         </tr>
 
         <tr>
           <td align="center" bgcolor="#000000" style="padding: 0 16px 0 16px">
-            <p style="color: #FFFFFF; font-family: Montserrat, Helvetica, sans-serif; font-size: 10px;">This email was sent by one of our users. If you don't know the sender, please report to contactus@yoohood.fun</p>
+            <p style="color: #FFFFFF; font-family: Montserrat, Helvetica, sans-serif; font-size: 10px;"><%= I18n.translate('invite_mailer.invitation.footer_warning_1') %></p>
+            <p style="color: #FFFFFF; font-family: Montserrat, Helvetica, sans-serif; font-size: 10px;"><%= I18n.translate('invite_mailer.invitation.footer_warning_2', user_name: @invite.user.name) %></p>
           </td>
         </tr>
 

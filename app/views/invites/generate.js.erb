@@ -1,0 +1,13 @@
+inviteBtn = document.getElementById('invite-with-link-button')
+link = document.getElementById('invite-link');
+
+link.dataset.clipboardText = window.location.origin + "/" + "/invites/" + "<%= @invite.id %>" + "?token=" + "<%= @invite.token %>";
+console.log(link.dataset.clipboardText);
+link.classList.remove('d-none');
+inviteBtn.remove();
+
+link.addEventListener('click', e => {
+    link.innerHTML = "<%= t('.copied') %>"
+    link.classList.remove('btn-success');
+    link.classList.add('btn-primary');
+})
